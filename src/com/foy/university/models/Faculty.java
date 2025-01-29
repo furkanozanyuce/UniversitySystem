@@ -10,7 +10,7 @@ public class Faculty {
     private String dean;
     private String address;
     //private Set<Department> departments;
-    Map<Long, Department> departments;
+    private Map<Long, Department> departments;
 
     public Faculty(Long id, String name, String address, String dean) {
         this.setId(id);

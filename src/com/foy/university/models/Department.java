@@ -54,11 +54,11 @@ public abstract class Department {
             return false;
         }
         Department department = (Department) obj;
-        return this.id.equals(department.getId());
+        return this.getId().equals(department.getId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(getId());
     }
 }
