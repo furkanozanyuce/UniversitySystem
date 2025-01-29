@@ -1,30 +1,49 @@
-package com.foy.university;
+package com.foy.university.models;
 
+import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 public abstract class Department {
-    private Integer id;
+    private Long id;
     private String name;
     private String departmentHead;
     private Faculty faculty;
+    private Set<Course> courses;
 
-    public Department(Integer id, String name, String departmentHead, Faculty faculty) {
+    public Department(Long id, String name, String departmentHead, Faculty faculty) {
         this.id = id;
         this.name = name;
         this.departmentHead = departmentHead;
         this.faculty = faculty;
         faculty.addDepartment(this);
+        this.courses = new HashSet<>();
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public Faculty getFaculty() {
         return faculty;
     }
 
-    public Integer getId() {
-        return id;
+    public Set<Course> getCourses() {
+        return courses;
     }
 
-    public abstract void lessonToLearn();
+    public void addCourse(Course course) {
+        if (course.getDepartment().equals(this)) {
+            courses.add(course);
+        }
+    }
+
+    public abstract List<Course> lessonToLearn();
 
     @Override
     public boolean equals(Object obj) {

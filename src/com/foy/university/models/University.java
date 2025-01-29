@@ -1,4 +1,4 @@
-package com.foy.university;
+package com.foy.university.models;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -17,6 +17,10 @@ public class University {
         return name;
     }
 
+    public List<Faculty> getFaculties() {
+        return faculties;
+    }
+
     private void setName(String name) {
         this.name = name;
     }
@@ -31,7 +35,7 @@ public class University {
         return faculties.remove(faculty);
     }
 
-    public void removeFaculty(Integer facultyId) {
+    public void removeFaculty(Long facultyId) {
         Iterator<Faculty> iterator = faculties.iterator();
         while (iterator.hasNext()) {
             Faculty faculty = iterator.next();

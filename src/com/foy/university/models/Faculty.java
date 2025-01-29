@@ -1,28 +1,27 @@
-package com.foy.university;
+package com.foy.university.models;
 
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Faculty {
-    private Integer id;
+    private Long id;
     private String name;
     private LocalDateTime createdDate;
     private String dean;
     private String address;
-    private Set<Department> departments;
+    //private Set<Department> departments;
+    Map<Long, Department> departments;
 
-    public Faculty(Integer id, String name, String address, String dean) {
+    public Faculty(Long id, String name, String address, String dean) {
         this.setId(id);
         this.name = name;
         this.address = address;
         this.dean = dean;
         this.createdDate = LocalDateTime.now();
-        this.departments = new HashSet<>();
+        this.departments = new HashMap<>();
     }
 
-    public Faculty(Integer id, String name, String address, String dean, LocalDateTime createdDate, Set<Department> departments) {
+    public Faculty(Long id, String name, String address, String dean, LocalDateTime createdDate, Map<Long, Department> departments) {
         this.id = id;
         this.name = name;
         this.address = address;
@@ -31,18 +30,31 @@ public class Faculty {
         this.departments = departments;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    private void setId(Integer id) {
+    public String getName() {
+        return name;
+    }
+
+    //map getter'ı biraz karmaşık
+    public Collection<Department> getDepartments() {
+        return departments.values();
+    }
+
+    private void setId(Long id) {
         this.id = id;
     }
 
     public void addDepartment(Department department) {
-        if (department.getFaculty().equals(this)){
-            departments.add(department);
+        if (department.getFaculty().equals(this) && !departments.containsKey(department.getId())){
+            departments.put(department.getId(), department);
         }
+    }
+
+    public Department getFacultyDepartmentById(Long departmentId) {
+        return departments.get(departmentId);
     }
 
     @Override
