@@ -5,24 +5,35 @@ import com.foy.university.models.*;
 import java.util.Scanner;
 
 public class Main {
+    static Scanner scanner = new Scanner(System.in);
+    static University atUni = new University("At University");
+
     public static void main(String[] args) {
 
         System.out.println("Welcome to our university directory system");
 
-        System.out.println("Press 1 to add a faculty");
-        System.out.println("Press 2 to add a department");
-        System.out.println("Press 3 to add a course");
-        System.out.println("Press 4 to add a instructor");
+        boolean exit = false;
+        while (!exit) {
+            System.out.println("Press 1 to add a faculty");
+            System.out.println("Press 2 to add a department");
+            System.out.println("Press 3 to add a course");
+            System.out.println("Press 4 to add a instructor");
+            System.out.println("Press 0 to exit");
 
-        Scanner scanner = new Scanner(System.in);
-        int choise = scanner.nextInt();
 
-        switch (choise) {
-            case 1:
-                System.out.println("Enter a faculty name");
+            int choise = scanner.nextInt();
+
+            switch (choise) {
+                case 1:
+                    addFaculty();
+                    break;
+                case 0: exit = true;
+                    break;
+                default: System.out.println("Invalid choice!");
+            }
+            //break;
         }
 
-        University atUni = new University("At University");
 
         Faculty engineering = new Faculty(1L, "Engineering", "Istanbul", "Dr. Ozan");
         Faculty medicine = new Faculty(2L, "Medicine", "Istanbul", "Dr. Furkan");
@@ -49,5 +60,21 @@ public class Main {
         }
 
 
+    }
+
+    private static void addFaculty() {
+        scanner.nextLine();
+        System.out.print("Enter Fculty ID: ");
+        Long id = Long.parseLong(scanner.nextLine());
+        System.out.print("Enter name: ");
+        String name = scanner.nextLine();
+        System.out.print("Enter address: ");
+        String address = scanner.nextLine();
+        System.out.print("Enter dean: ");
+        String dean = scanner.nextLine();
+        Faculty faculty = new Faculty(id, name, address, dean);
+        atUni.addFaculty(faculty);
+        System.out.println("Faculty added successfully!");
+        System.out.println(faculty);
     }
 }

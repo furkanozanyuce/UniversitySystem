@@ -68,6 +68,18 @@ public class Faculty {
         Faculty faculty = (Faculty) obj;
         return this.id.equals(faculty.id);
     }
+
+    @Override
+    public String toString() {
+        return "Faculty{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", createdDate=" + createdDate +
+                ", dean='" + dean + '\'' +
+                ", address='" + address + '\'' +
+                ", departments=" + departments +
+                '}';
+    }
 }
 
 
