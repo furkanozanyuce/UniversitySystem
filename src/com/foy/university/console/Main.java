@@ -1,4 +1,4 @@
-package com.foy.university;
+package com.foy.university.console;
 
 import com.foy.university.models.*;
 
@@ -25,7 +25,7 @@ public class Main {
 
             switch (choise) {
                 case 1:
-                    addFaculty();
+                    addFacultyMenu();
                     break;
                 case 0: exit = true;
                     break;
@@ -62,7 +62,7 @@ public class Main {
 
     }
 
-    private static void addFaculty() {
+    private static void addFacultyMenu() {
         scanner.nextLine();
         System.out.print("Enter Fculty ID: ");
         Long id = Long.parseLong(scanner.nextLine());
